@@ -16,20 +16,20 @@
   body {
     font-family: "Georgia", serif;
     overflow: hidden;
-    background: #f6f2ee; /* color crema base */
+    background-color: #f4e3d2; /* crema más marcado */
     position: relative;
   }
 
-  /* ===== FONDO TORNASOL ===== */
+  /* ===== FONDO TORNASOL MÁS VISIBLE ===== */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(circle at 20% 20%, rgba(255, 210, 220, 0.6), transparent 60%),
-      radial-gradient(circle at 80% 30%, rgba(255, 235, 200, 0.6), transparent 60%),
-      radial-gradient(circle at 50% 80%, rgba(220, 235, 255, 0.6), transparent 60%),
-      linear-gradient(180deg, #fdf7f2, #f3ede7);
+      radial-gradient(circle at 20% 20%, rgba(255, 210, 180, 0.6), transparent 60%),
+      radial-gradient(circle at 80% 30%, rgba(255, 230, 200, 0.6), transparent 60%),
+      radial-gradient(circle at 50% 80%, rgba(220, 235, 255, 0.4), transparent 60%),
+      linear-gradient(180deg, #f7dcbf, #f4e3d2);
     z-index: -1;
   }
 
