@@ -14,43 +14,24 @@
       justify-content: center;
       align-items: center;
       color: #fff;
-      text-align: center;
     }
 
     .container {
       position: relative;
-      width: 320px;
+      width: 340px;
+      text-align: center;
     }
 
     /* SOBRE */
     .envelope {
       width: 100%;
-      height: 200px;
+      height: 220px;
       background: #ff4d6d;
-      border-radius: 0 0 20px 20px;
+      border-radius: 0 0 22px 22px;
       position: relative;
       cursor: pointer;
       box-shadow: 0 15px 30px rgba(0,0,0,0.25);
       overflow: hidden;
-    }
-
-    /* CORAZÓN */
-    .heart {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 36px;
-    }
-
-    /* TEXTO EXTERIOR */
-    .to {
-      position: absolute;
-      bottom: 15px;
-      width: 100%;
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 1px;
     }
 
     /* TAPA */
@@ -61,10 +42,42 @@
       width: 100%;
       height: 100%;
       background: #ff6f91;
-      clip-path: polygon(0 0, 50% 60%, 100% 0);
+      clip-path: polygon(0 0, 50% 65%, 100% 0);
       transform-origin: top;
-      transition: transform 0.8s ease;
+      transition: transform 0.9s ease;
+      z-index: 3;
+    }
+
+    /* SELLO */
+    .seal {
+      position: absolute;
+      top: 95px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 65px;
+      height: 65px;
+      background: radial-gradient(circle at top left, #ff9aa2, #c9184a);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      box-shadow:
+        inset 0 2px 4px rgba(255,255,255,0.4),
+        inset 0 -3px 6px rgba(0,0,0,0.3),
+        0 6px 12px rgba(0,0,0,0.4);
       z-index: 2;
+    }
+
+    /* TEXTO EXTERIOR */
+    .to {
+      position: absolute;
+      bottom: 18px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      z-index: 1;
     }
 
     /* CARTA */
@@ -72,13 +85,15 @@
       position: absolute;
       bottom: 0;
       left: 50%;
-      transform: translateX(-50%) translateY(100%);
-      width: 90%;
-      background: rgba(255,255,255,0.96);
+      transform: translateX(-50%) translateY(120%);
+      width: 92%;
+      min-height: 260px;
+      background: rgba(255,255,255,0.97);
       color: #333;
-      padding: 25px;
-      border-radius: 15px;
-      transition: transform 1s ease;
+      padding: 30px 28px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 1.1s ease;
       z-index: 1;
     }
 
@@ -87,27 +102,29 @@
     }
 
     .open .letter {
-      transform: translateX(-50%) translateY(-20px);
+      transform: translateX(-50%) translateY(-40px);
     }
 
     h1 {
-      font-size: 22px;
-      margin-bottom: 15px;
+      font-size: 24px;
+      margin-bottom: 18px;
+      color: #c9184a;
     }
 
     p {
-      font-size: 15px;
-      line-height: 1.6;
+      font-size: 16px;
+      line-height: 1.7;
     }
 
     footer {
-      margin-top: 20px;
+      margin-top: 25px;
       font-size: 11px;
       opacity: 0.6;
+      text-align: center;
     }
 
     .hint {
-      margin-top: 15px;
+      margin-top: 18px;
       font-size: 14px;
       opacity: 0.9;
     }
@@ -120,13 +137,13 @@
     <div class="envelope" onclick="abrir()">
       <div class="flap"></div>
 
-      <div class="heart">❤️</div>
+      <div class="seal">💖</div>
       <div class="to" id="para"></div>
 
       <div class="letter">
         <h1 id="titulo"></h1>
         <p id="mensaje"></p>
-        <footer>Creado con 💖</footer>
+        <footer>Hecho con amor 💌</footer>
       </div>
     </div>
 
@@ -137,7 +154,7 @@
     const params = new URLSearchParams(window.location.search);
 
     const nombre = params.get("nombre") || "Para ti";
-    const texto  = params.get("mensaje") || "Feliz San Valentín 💘";
+    const texto  = params.get("mensaje") || "Feliz 14 de febrero 💘";
 
     document.getElementById("titulo").innerText = nombre + " 💖";
     document.getElementById("para").innerText = "Para " + nombre;
