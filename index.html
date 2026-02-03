@@ -9,7 +9,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #ffe4ec; /* fondo rosita pastel */
+  background-color: #ffe4ec; /* fondo rosita */
   font-family: Georgia, serif;
   overflow: hidden;
 }
@@ -27,7 +27,7 @@ html, body {
   height: 430px;
 }
 
-/* ===== SOBRE ===== */
+/* ===== CONTENEDOR DEL SOBRE ===== */
 .envelope {
   position: relative;
   width: 100%;
@@ -36,7 +36,7 @@ html, body {
   cursor: pointer;
 }
 
-/* cuerpo fijo del sobre */
+/* ===== CUERPO DEL SOBRE ===== */
 .body {
   position: absolute;
   bottom: 0;
@@ -44,48 +44,39 @@ html, body {
   height: 180px;
   border-radius: 6px;
   background: #f5d6c6;
-
-  /* textura de papel sutil */
-  background-image: 
+  background-image:
     repeating-linear-gradient(0deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05) 1px, transparent 1px, transparent 4px),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px);
   background-blend-mode: overlay;
-
   box-shadow: 0 12px 25px rgba(0,0,0,0.35), inset 0 0 12px rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.12);
   z-index: 1;
 }
 
-/* flap triangular que rota */
+/* ===== FLAP (Doble superior) ===== */
 .flap {
   position: absolute;
-  top: 0;
+  bottom: 180px; /* justo arriba del cuerpo */
   width: 100%;
   height: 120px;
   background: #f5d6c6;
-
-  /* misma textura */
-  background-image: 
+  background-image:
     repeating-linear-gradient(0deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05) 1px, transparent 1px, transparent 4px),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px);
   background-blend-mode: overlay;
-
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top center;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  transform-origin: bottom center; /* pivote para abrir */
   transition: transform 1s ease;
   z-index: 3;
-
-  /* sombra para doblez */
-  box-shadow: inset 0 -6px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
+  box-shadow: inset 0 6px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
 }
 
-/* flap se abre */
+/* FLAP ABIERTO */
 .envelope.open .flap {
   transform: rotateX(180deg);
-  box-shadow: inset 0 -6px 6px rgba(0,0,0,0.1);
 }
 
-/* sello pegado al flap */
+/* SELLO */
 .seal {
   position: absolute;
   width: 52px;
@@ -93,8 +84,8 @@ html, body {
   background: radial-gradient(circle at 30% 30%, #ffb3c7, #c2185b);
   border-radius: 50%;
   left: 50%;
-  top: 60px;
-  transform: translate(-50%, -50%);
+  bottom: 150px; /* dentro del flap */
+  transform: translateX(-50%);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   z-index: 4;
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -102,11 +93,11 @@ html, body {
 
 .envelope.open .seal {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.6);
+  transform: translateX(-50%) scale(0.6);
   pointer-events: none;
 }
 
-/* nombre */
+/* NOMBRE */
 .to-name {
   position: absolute;
   bottom: 18px;
@@ -118,7 +109,7 @@ html, body {
   z-index: 2;
 }
 
-/* hint */
+/* HINT */
 .hint {
   margin-top: 16px;
   font-size: 14px;
@@ -196,7 +187,7 @@ html, body {
     <div class="letter">
       <h1>Para ti</h1>
       <p>
-        Esta carta es solo para ti.  
+        Esta carta es solo para ti.<br>
         Gracias por existir y hacer el mundo un poquito más lindo.
       </p>
     </div>
