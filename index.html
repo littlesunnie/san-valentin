@@ -148,15 +148,15 @@
     color: #444;
   }
 
-  /* ===== CORAZONES SVG ===== */
+  /* ===== CORAZONES SVG SUAVES ===== */
   .heart-svg {
     position: absolute;
     width: 30px;
     height: 30px;
-    fill: #ff5c8d; /* sólido y bonito */
+    fill: #ffaacd; /* rosa pastel suave */
     pointer-events: none;
     z-index: 1;
-    opacity: 0;
+    opacity: 0.75; /* menos fuerte */
     transform-origin: center;
   }
 </style>
@@ -194,7 +194,7 @@ envelope.addEventListener("click", () => {
   envelope.classList.add("open");
 });
 
-// ===== CORAZONES SVG equilibrados =====
+// ===== CORAZONES SVG SUAVES =====
 const numHearts = 35;
 for (let i = 0; i < numHearts; i++) {
   const svgNS = "http://www.w3.org/2000/svg";
@@ -202,7 +202,7 @@ for (let i = 0; i < numHearts; i++) {
   heart.setAttribute("viewBox","0 0 32 29.6");
   heart.classList.add("heart-svg");
 
-  // tamaño aleatorio entre 18-35px para que siempre se vea bien
+  // tamaño aleatorio 18-35px
   const size = Math.random() * 17 + 18;
   heart.style.width = `${size}px`;
   heart.style.height = `${size}px`;
@@ -236,7 +236,7 @@ for (let i = 0; i < numHearts; i++) {
       heart.style.top = `${startY - progress * (window.innerHeight + 100)}px`;
       heart.style.left = `${startX + Math.sin(progress * Math.PI * 2) * moveX}px`;
       heart.style.transform = `rotate(${progress*rotate}deg)`;
-      heart.style.opacity = 1 - progress;
+      heart.style.opacity = 0.75 * (1 - progress); // menos fuerte
       requestAnimationFrame(animate);
     } else {
       // reiniciar animación desde abajo
