@@ -11,16 +11,12 @@
     margin: 0;
     padding: 0;
     height: 100%;
-  }
-
-  body {
-    font-family: "Georgia", serif;
     overflow: hidden;
+    font-family: "Georgia", serif;
     background-color: #ffe4ec; /* rosita pastel base */
-    position: relative;
   }
 
-  /* ===== FONDO CORAZONES ===== */
+  /* ===== CORAZONES FLOTANTES ===== */
   body::before {
     content: "";
     position: fixed;
@@ -32,6 +28,13 @@
       radial-gradient(circle at 85% 75%, rgba(255, 200, 230, 0.4), transparent 60%),
       linear-gradient(180deg, #ffe4ec, #ffd1e3);
     z-index: -1;
+    animation: floatHearts 20s linear infinite;
+  }
+
+  @keyframes floatHearts {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-25px); }
+    100% { transform: translateY(0px); }
   }
 
   /* ===== CENTRADOR ===== */
@@ -42,7 +45,6 @@
     align-items: center;
   }
 
-  /* ===== CONTENEDOR ===== */
   .container {
     position: relative;
     width: 360px;
@@ -71,7 +73,6 @@
     z-index: 1;
   }
 
-  /* TEXTO EN EL SOBRE */
   .to-name {
     position: absolute;
     bottom: 22px;
@@ -83,7 +84,6 @@
     pointer-events: none;
   }
 
-  /* SOLAPA */
   .flap {
     position: absolute;
     width: 100%;
@@ -99,7 +99,6 @@
     transform: rotateX(180deg);
   }
 
-  /* SELLO */
   .seal {
     position: absolute;
     width: 52px;
@@ -120,7 +119,6 @@
     pointer-events: none;
   }
 
-  /* TEXTO INDICADOR */
   .hint {
     margin-top: 16px;
     font-size: 14px;
