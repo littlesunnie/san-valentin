@@ -39,7 +39,7 @@ html, body {
   perspective: 1000px;
 }
 
-/* cuerpo del sobre con color más contrastante y textura definida */
+/* cuerpo del sobre con textura visible */
 .body {
   position: absolute;
   bottom: 0;  
@@ -47,9 +47,9 @@ html, body {
   width: 100%;
   height: 180px; 
   border-radius: 6px;
-  background: #f5d6c6; /* color beige cálido */
+  background: #f5d6c6; /* beige cálido */
   
-  /* textura tipo papel visible */
+  /* textura tipo papel */
   background-image:
     linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%),
     linear-gradient(-45deg, rgba(255,255,255,0.15) 25%, transparent 25%),
@@ -76,7 +76,7 @@ html, body {
   z-index: 2;
 }
 
-/* flap/cierre */
+/* flap/cierre pegado al cuerpo */
 .flap {
   position: absolute;
   top: 0;
@@ -87,7 +87,7 @@ html, body {
   transform-origin: top;
   transition: transform 1s ease, box-shadow 0.3s ease;
   z-index: 3;
-  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
+  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
 }
 
 /* relieve 3D al pasar el mouse */
