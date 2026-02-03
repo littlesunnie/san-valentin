@@ -9,7 +9,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #ffe4ec; /* fondo rosita pastel */
+  background-color: #fff; /* fondo blanco */
   font-family: Georgia, serif;
   overflow: hidden;
 }
@@ -36,7 +36,7 @@ html, body {
   cursor: pointer;
 }
 
-/* cuerpo fijo del sobre */
+/* cuerpo del sobre */
 .body {
   position: absolute;
   bottom: 0;
@@ -53,10 +53,10 @@ html, body {
   z-index: 1;
 }
 
-/* flap cerrado */
+/* flap del sobre */
 .flap {
   position: absolute;
-  bottom: 180px; /* justo encima del cuerpo */
+  bottom: 180px; /* justo arriba del cuerpo */
   width: 100%;
   height: 120px;
   background: #f5d6c6;
@@ -65,7 +65,7 @@ html, body {
     repeating-linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px);
   background-blend-mode: overlay;
   clip-path: polygon(0 100%, 50% 0, 100% 100%);
-  transform-origin: bottom center; /* pivote en la base */
+  transform-origin: bottom center;
   transform: rotateX(0deg); /* cerrado al inicio */
   transition: transform 1s ease;
   z-index: 3;
@@ -74,7 +74,7 @@ html, body {
 
 /* flap abierto */
 .envelope.open .flap {
-  transform: rotateX(-180deg); /* rota hacia atrás */
+  transform: rotateX(-180deg);
 }
 
 /* sello */
@@ -85,7 +85,7 @@ html, body {
   background: radial-gradient(circle at 30% 30%, #ffb3c7, #c2185b);
   border-radius: 50%;
   left: 50%;
-  bottom: 150px; /* dentro del flap */
+  bottom: 150px;
   transform: translateX(-50%);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   z-index: 4;
@@ -123,7 +123,7 @@ html, body {
   opacity: 0;
 }
 
-/* ===== CARTA ===== */
+/* carta */
 .letter {
   position: absolute;
   left: 50%;
@@ -160,7 +160,7 @@ html, body {
   color: #444;
 }
 
-/* ===== CORAZONES SUAVES ===== */
+/* corazones suaves */
 .heart-svg {
   position: absolute;
   width: 30px;
@@ -205,7 +205,7 @@ envelope.addEventListener("click", () => {
   envelope.classList.add("open");
 });
 
-// ===== CORAZONES SUAVES =====
+// corazones animados
 const numHearts = 35;
 for (let i = 0; i < numHearts; i++) {
   const svgNS = "http://www.w3.org/2000/svg";
