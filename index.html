@@ -39,7 +39,7 @@ html, body {
   perspective: 1000px;
 }
 
-/* cuerpo del sobre con textura visible */
+/* cuerpo del sobre con textura de papel */
 .body {
   position: absolute;
   bottom: 0;  
@@ -49,15 +49,22 @@ html, body {
   border-radius: 6px;
   background: #f5d6c6; /* beige cálido */
   
-  /* textura tipo papel */
-  background-image:
-    linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(255,255,255,0.15) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.15) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.15) 75%),
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 5%, transparent 5%),
-    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08) 4%, transparent 4%);
-  background-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, 50px 50px, 40px 40px;
+  /* textura de papel sutil */
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 4px
+    );
   background-blend-mode: overlay;
 
   box-shadow: 0 12px 25px rgba(0,0,0,0.35), inset 0 0 12px rgba(0,0,0,0.1);
@@ -76,30 +83,49 @@ html, body {
   z-index: 2;
 }
 
-/* flap/cierre pegado al cuerpo */
+/* flap/cierre pegado al cuerpo con misma textura */
 .flap {
   position: absolute;
   top: 0;
   width: 100%;
   height: 120px; 
-  background: linear-gradient(160deg, #e6d3bd, #d7c2a6);
+  background: #f5d6c6; /* mismo color que el cuerpo */
+  
+  /* misma textura de papel */
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  background-blend-mode: overlay;
+
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top;
   transition: transform 1s ease, box-shadow 0.3s ease;
   z-index: 3;
-  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
+  box-shadow: inset 0 -5px 8px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
 }
 
 /* relieve 3D al pasar el mouse */
 .flap:hover {
-  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1),
+  box-shadow: inset 0 -5px 8px rgba(0,0,0,0.1),
               0 5px 15px rgba(0,0,0,0.2);
   transform: rotateX(5deg);
 }
 
 .open .flap {
   transform: rotateX(180deg);
-  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
+  box-shadow: inset 0 -5px 8px rgba(0,0,0,0.1);
 }
 
 /* sello encima del flap */
