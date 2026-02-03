@@ -12,16 +12,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #f8cdda, #fbd786);
+    background: linear-gradient(180deg, #fdf6f8, #f7f3f4);
     font-family: "Georgia", serif;
     overflow: hidden;
   }
 
-  /* CONTENEDOR */
   .container {
     position: relative;
     width: 360px;
-    height: 320px;
+    height: 360px;
   }
 
   /* SOBRE */
@@ -42,6 +41,18 @@
     background: #f2e6d8;
     border-radius: 6px;
     z-index: 1;
+  }
+
+  /* TEXTO EN EL SOBRE */
+  .to-name {
+    position: absolute;
+    bottom: 22px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: #7a3a4a;
+    z-index: 4;
+    pointer-events: none;
   }
 
   /* SOLAPA */
@@ -105,6 +116,14 @@
     pointer-events: auto;
   }
 
+  .hint {
+    text-align: center;
+    font-size: 14px;
+    color: #b06a7a;
+    margin-bottom: 14px;
+    opacity: 0.85;
+  }
+
   .letter h1 {
     margin-top: 0;
     text-align: center;
@@ -124,14 +143,16 @@
   <div class="envelope" id="envelope">
     <div class="back"></div>
     <div class="seal"></div>
+    <div class="to-name">Para Isi 💌</div>
     <div class="flap"></div>
   </div>
 
   <div class="letter">
-    <h1>Para ti 💌</h1>
+    <div class="hint">Toca la carta 💌</div>
+    <h1>Para ti</h1>
     <p>
       Esta carta es solo para ti.  
-      Gracias por existir y por hacer mis días más lindos.
+      Gracias por existir y hacer el mundo un poquito más lindo.
     </p>
   </div>
 </div>
