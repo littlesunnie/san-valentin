@@ -42,23 +42,26 @@ html, body {
 /* cuerpo del sobre con textura visible */
 .body {
   position: absolute;
-  bottom: 0;  /* que quede debajo del flap */
+  bottom: 0;  
   left: 0;
   width: 100%;
-  height: 180px; /* un poco más corto que el flap */
+  height: 180px; 
   border-radius: 6px;
   background: linear-gradient(145deg, #f2e6d8, #e6d3bd);
 
-  /* textura tipo papel visible */
+  /* textura tipo papel */
   background-image:
     linear-gradient(45deg, rgba(255,255,255,0.12) 25%, transparent 25%),
     linear-gradient(-45deg, rgba(255,255,255,0.12) 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.12) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.12) 75%);
-  background-size: 20px 20px;
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.12) 75%),
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 5%, transparent 5%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08) 4%, transparent 4%);
+  background-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, 50px 50px, 40px 40px;
   background-blend-mode: overlay;
 
-  box-shadow: 0 12px 20px rgba(0,0,0,0.2), inset 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25), inset 0 0 12px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.08);
   z-index: 1;
 }
 
@@ -78,7 +81,7 @@ html, body {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 120px; /* solo la parte superior */
+  height: 120px; 
   background: linear-gradient(160deg, #e6d3bd, #d7c2a6);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top;
