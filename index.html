@@ -45,7 +45,7 @@ html, body {
   border-radius: 6px;
   background: #f5d6c6;
 
-  /* textura de papel */
+  /* textura de papel sutil */
   background-image: 
     repeating-linear-gradient(0deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05) 1px, transparent 1px, transparent 4px),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px);
@@ -56,7 +56,7 @@ html, body {
   z-index: 1;
 }
 
-/* flap que rota */
+/* flap triangular que rota */
 .flap {
   position: absolute;
   top: 0;
@@ -64,7 +64,7 @@ html, body {
   height: 120px;
   background: #f5d6c6;
 
-  /* textura igual que cuerpo */
+  /* misma textura */
   background-image: 
     repeating-linear-gradient(0deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05) 1px, transparent 1px, transparent 4px),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px);
@@ -79,7 +79,7 @@ html, body {
   box-shadow: inset 0 -6px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
 }
 
-/* abrir flap */
+/* flap se abre */
 .envelope.open .flap {
   transform: rotateX(180deg);
   box-shadow: inset 0 -6px 6px rgba(0,0,0,0.1);
