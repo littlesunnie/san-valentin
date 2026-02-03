@@ -20,7 +20,8 @@
   .container {
     position: relative;
     width: 360px;
-    height: 360px;
+    height: 420px;
+    text-align: center;
   }
 
   /* SOBRE */
@@ -33,6 +34,7 @@
     box-shadow: 0 15px 30px rgba(0,0,0,0.25);
     cursor: pointer;
     z-index: 10;
+    margin: 0 auto;
   }
 
   .back {
@@ -92,11 +94,24 @@
     pointer-events: none;
   }
 
+  /* TEXTO INDICADOR */
+  .hint {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #b06a7a;
+    opacity: 0.85;
+    transition: opacity 0.4s ease;
+  }
+
+  .open ~ .hint {
+    opacity: 0;
+  }
+
   /* CARTA */
   .letter {
     position: absolute;
     left: 50%;
-    bottom: 120px;
+    bottom: 140px;
     transform: translateX(-50%) translateY(160px);
     opacity: 0;
     pointer-events: none;
@@ -114,14 +129,6 @@
     transform: translateX(-50%) translateY(-40px);
     opacity: 1;
     pointer-events: auto;
-  }
-
-  .hint {
-    text-align: center;
-    font-size: 14px;
-    color: #b06a7a;
-    margin-bottom: 14px;
-    opacity: 0.85;
   }
 
   .letter h1 {
@@ -148,13 +155,14 @@
   </div>
 
   <div class="letter">
-    <div class="hint">Toca la carta 💌</div>
     <h1>Para ti</h1>
     <p>
       Esta carta es solo para ti.  
       Gracias por existir y hacer el mundo un poquito más lindo.
     </p>
   </div>
+
+  <div class="hint">Toca el sobre 💌</div>
 </div>
 
 <script>
