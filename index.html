@@ -52,3 +52,78 @@
       position: absolute;
       bottom: 0;
       left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      width: 90%;
+      background: rgba(255,255,255,0.95);
+      color: #333;
+      padding: 25px;
+      border-radius: 15px;
+      transition: transform 1s ease;
+    }
+
+    /* ABIERTO */
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .open .letter {
+      transform: translateX(-50%) translateY(-20px);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .hint {
+      margin-top: 15px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 11px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="envelope" onclick="abrir()">
+      <div class="flap"></div>
+
+      <div class="letter">
+        <h1 id="titulo"></h1>
+        <p id="mensaje"></p>
+        <footer>Creado con 💖</footer>
+      </div>
+    </div>
+
+    <div class="hint">Toca el sobre 💌</div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const nombre = params.get("nombre") || "Para ti 💖";
+    const texto  = params.get("mensaje") || "Feliz San Valentín 💘";
+
+    document.getElementById("titulo").innerText = nombre;
+    document.getElementById("mensaje").innerText = texto;
+
+    function abrir() {
+      document.querySelector(".envelope").classList.add("open");
+      document.querySelector(".hint").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
