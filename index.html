@@ -29,7 +29,7 @@ html, body {
   text-align: center;
 }
 
-/* ===== SOBRE ===== */
+/* ===== SOBRE UNIFICADO ===== */
 .envelope {
   position: relative;
   width: 360px;
@@ -39,17 +39,16 @@ html, body {
   perspective: 1000px;
 }
 
-/* cuerpo del sobre con textura de papel */
+/* cuerpo + flap como un solo div */
 .body {
   position: absolute;
-  bottom: 0;  
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 180px; 
-  border-radius: 6px;
+  height: 240px;
   background: #f5d6c6; /* beige cálido */
   
-  /* textura de papel sutil */
+  /* textura tipo papel */
   background-image: 
     repeating-linear-gradient(
       0deg,
@@ -67,68 +66,36 @@ html, body {
     );
   background-blend-mode: overlay;
 
+  border-radius: 6px;
   box-shadow: 0 12px 25px rgba(0,0,0,0.35), inset 0 0 12px rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.12);
+  overflow: hidden;
   z-index: 1;
 }
 
-.to-name {
-  position: absolute;
-  bottom: 18px;
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-  color: #7a3a4a;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* flap/cierre pegado al cuerpo con misma textura */
-.flap {
+/* flap integrado usando pseudo-elemento */
+.body::before {
+  content: "";
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
-  height: 120px; 
-  background: #f5d6c6; /* mismo color que el cuerpo */
-  
-  /* misma textura de papel */
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.05),
-      rgba(255,255,255,0.05) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.03),
-      rgba(255,255,255,0.03) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  background-blend-mode: overlay;
-
+  height: 120px;
+  background: inherit; /* misma textura */
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top;
   transition: transform 1s ease, box-shadow 0.3s ease;
-  z-index: 3;
+  z-index: 2;
   box-shadow: inset 0 -5px 8px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
 }
 
-/* relieve 3D al pasar el mouse */
-.flap:hover {
-  box-shadow: inset 0 -5px 8px rgba(0,0,0,0.1),
-              0 5px 15px rgba(0,0,0,0.2);
-  transform: rotateX(5deg);
-}
-
-.open .flap {
+/* abrir flap */
+.envelope.open .body::before {
   transform: rotateX(180deg);
   box-shadow: inset 0 -5px 8px rgba(0,0,0,0.1);
 }
 
-/* sello encima del flap */
+/* sello integrado */
 .seal {
   position: absolute;
   width: 52px;
@@ -139,16 +106,29 @@ html, body {
   top: 60px;
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 4;
+  z-index: 3;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.open .seal {
+.envelope.open .seal {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.6);
   pointer-events: none;
 }
 
+/* nombre */
+.to-name {
+  position: absolute;
+  bottom: 18px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: #7a3a4a;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* hint */
 .hint {
   margin-top: 16px;
   font-size: 14px;
@@ -157,7 +137,7 @@ html, body {
   transition: opacity 0.4s ease;
 }
 
-.open ~ .hint {
+.envelope.open ~ .hint {
   opacity: 0;
 }
 
@@ -179,7 +159,7 @@ html, body {
   z-index: 5;
 }
 
-.open + .letter {
+.envelope.open + .letter {
   transform: translateX(-50%) translateY(-40px);
   opacity: 1;
   pointer-events: auto;
@@ -219,9 +199,8 @@ html, body {
 
     <div class="envelope" id="envelope">
       <div class="body"></div>
-      <div class="to-name">Para Isi 💌</div>
-      <div class="flap"></div>
       <div class="seal"></div>
+      <div class="to-name">Para Isi 💌</div>
     </div>
 
     <div class="letter">
