@@ -32,23 +32,24 @@
     z-index: 10; /* encima de los corazones */
   }
 
-  /* ===== SOBRE ===== */
+  /* ===== SOBRE REALISTA ===== */
   .envelope {
     position: relative;
     width: 360px;
     height: 240px;
-    background: #f2e6d8;
+    background: linear-gradient(145deg, #f2e6d8, #e6d3bd);
     border-radius: 6px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.25), inset 0 0 10px rgba(0,0,0,0.1);
     cursor: pointer;
     z-index: 10;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   .back {
     position: absolute;
     inset: 0;
-    background: #f2e6d8;
+    background: linear-gradient(145deg, #f2e6d8, #e6d3bd);
     border-radius: 6px;
     z-index: 1;
   }
@@ -68,11 +69,12 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #e6d3bd;
+    background: linear-gradient(160deg, #e6d3bd, #d7c2a6);
     clip-path: polygon(0 0, 100% 0, 50% 55%);
     transform-origin: top;
     transition: transform 1s ease;
     z-index: 5;
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
   }
 
   .open .flap {
@@ -148,7 +150,7 @@
     color: #444;
   }
 
-  /* ===== CORAZONES SVG SUAVES ===== */
+  /* ===== CORAZONES SUAVES ===== */
   .heart-svg {
     position: absolute;
     width: 30px;
@@ -156,7 +158,7 @@
     fill: #ffaacd; /* rosa pastel suave */
     pointer-events: none;
     z-index: 1;
-    opacity: 0.75; /* menos fuerte */
+    opacity: 0.7; /* suave y no distractor */
     transform-origin: center;
   }
 </style>
@@ -194,7 +196,7 @@ envelope.addEventListener("click", () => {
   envelope.classList.add("open");
 });
 
-// ===== CORAZONES SVG SUAVES =====
+// ===== CORAZONES SUAVES =====
 const numHearts = 35;
 for (let i = 0; i < numHearts; i++) {
   const svgNS = "http://www.w3.org/2000/svg";
@@ -236,10 +238,10 @@ for (let i = 0; i < numHearts; i++) {
       heart.style.top = `${startY - progress * (window.innerHeight + 100)}px`;
       heart.style.left = `${startX + Math.sin(progress * Math.PI * 2) * moveX}px`;
       heart.style.transform = `rotate(${progress*rotate}deg)`;
-      heart.style.opacity = 0.75 * (1 - progress); // menos fuerte
+      heart.style.opacity = 0.7 * (1 - progress);
       requestAnimationFrame(animate);
     } else {
-      // reiniciar animación desde abajo
+      // reiniciar animación
       heart.style.top = `${window.innerHeight + Math.random() * 100}px`;
       heart.style.left = `${Math.random() * window.innerWidth}px`;
       startTime = null;
