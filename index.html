@@ -13,56 +13,42 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      color: #fff;
       text-align: center;
-      color: white;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 40px;
-      border-radius: 20px;
-      max-width: 500px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    /* CONTENEDOR */
+    .container {
+      position: relative;
+      width: 320px;
     }
 
-    h1 {
-      margin-bottom: 20px;
-      font-size: 32px;
+    /* SOBRE */
+    .envelope {
+      width: 100%;
+      height: 200px;
+      background: #ff4d6d;
+      border-radius: 0 0 20px 20px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
     }
 
-    p {
-      font-size: 18px;
-      line-height: 1.5;
+    /* TAPA DEL SOBRE */
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ff6f91;
+      clip-path: polygon(0 0, 50% 60%, 100% 0);
+      transform-origin: top;
+      transition: transform 0.8s ease;
     }
 
-    footer {
-      margin-top: 30px;
-      font-size: 12px;
-      opacity: 0.8;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="card">
-    <h1 id="titulo"></h1>
-    <p id="mensaje"></p>
-
-    <footer>
-      Creado con 💖
-    </footer>
-  </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-
-    const nombre = params.get("nombre") || "Para ti 💖";
-    const texto  = params.get("mensaje") || "Feliz San Valentín 💘";
-
-    document.getElementById("titulo").innerText = nombre;
-    document.getElementById("mensaje").innerText = texto;
-  </script>
-
-</body>
-</html>
+    /* CARTA */
+    .letter {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
