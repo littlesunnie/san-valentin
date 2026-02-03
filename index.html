@@ -29,7 +29,7 @@
     width: 360px;
     height: 430px;
     text-align: center;
-    z-index: 10;
+    z-index: 10; /* encima de los corazones */
   }
 
   /* ===== SOBRE ===== */
@@ -148,42 +148,16 @@
     color: #444;
   }
 
-  /* ===== CORAZONES SÓLIDOS ===== */
-  .heart {
+  /* ===== CORAZONES SVG ===== */
+  .heart-svg {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #ff99bb; /* más sólido */
-    transform: rotate(-45deg);
-    border-radius: 0 50% 50% 50%;
-    animation-name: floatHeart;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-  }
-
-  .heart::before,
-  .heart::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #ff99bb; /* sólido */
-    border-radius: 50%;
-  }
-  .heart::before { top: -10px; left: 0; }
-  .heart::after { top: 0; left: 10px; }
-
-  @keyframes floatHeart {
-    0% {
-      transform: translate(0px, 0px) rotate(-45deg);
-      opacity: 0;
-    }
-    10% { opacity: 1; }
-    50% { opacity: 1; }
-    100% {
-      transform: translate(var(--moveX), -700px) rotate(var(--rotateDeg));
-      opacity: 0;
-    }
+    width: 30px;
+    height: 30px;
+    fill: #ff5c8d; /* color sólido */
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transform-origin: center;
   }
 </style>
 </head>
@@ -214,39 +188,67 @@
 </div>
 
 <script>
-  const envelope = document.getElementById("envelope");
+const envelope = document.getElementById("envelope");
 
-  envelope.addEventListener("click", () => {
-    envelope.classList.add("open");
-  });
+envelope.addEventListener("click", () => {
+  envelope.classList.add("open");
+});
 
-  // ===== CREAR CORAZONES ANIMADOS =====
-  const numHearts = 35;
-  for (let i = 0; i < numHearts; i++) {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
+// ===== CREAR CORAZONES SVG ANIMADOS =====
+const numHearts = 40;
+for (let i = 0; i < numHearts; i++) {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const heart = document.createElementNS(svgNS, "svg");
+  heart.setAttribute("viewBox","0 0 32 29.6");
+  heart.classList.add("heart-svg");
 
-    // tamaño mínimo 15px
-    const size = Math.random() * 15 + 15; // 15-30px
-    heart.style.width = `${size}px`;
-    heart.style.height = `${size}px`;
+  // tamaño aleatorio
+  const size = Math.random() * 20 + 15; // 15-35px
+  heart.style.width = `${size}px`;
+  heart.style.height = `${size}px`;
 
-    heart.style.left = `${Math.random() * window.innerWidth}px`;
-    heart.style.top = `${Math.random() * window.innerHeight}px`;
+  // posición inicial
+  heart.style.left = `${Math.random() * window.innerWidth}px`;
+  heart.style.top = `${window.innerHeight + Math.random() * 100}px`;
 
-    // movimiento horizontal aleatorio
-    const moveX = (Math.random() - 0.5) * 100 + "px";
-    const rotateDeg = (Math.random() * 60 - 30) + "deg";
+  // crear forma de corazón
+  const path = document.createElementNS(svgNS, "path");
+  path.setAttribute("d", "M23.6,0c-2.9,0-5.4,1.8-6.6,4.4C15.8,1.8,13.3,0,10.4,0C4.7,0,0,4.7,0,10.4c0,5.8,5.1,10.3,12.8,17.1l3.2,2.8l3.2-2.8 C26.9,20.7,32,16.2,32,10.4C32,4.7,27.3,0,23.6,0z");
+  heart.appendChild(path);
 
-    heart.style.setProperty('--moveX', moveX);
-    heart.style.setProperty('--rotateDeg', rotateDeg);
+  document.body.appendChild(heart);
 
-    // duración y opacidad aleatorias, más sólidas
-    heart.style.animationDuration = `${Math.random() * 8 + 5}s`;
-    heart.style.opacity = 1;
+  // animación con JS
+  const duration = Math.random() * 8 + 5; // 5-13s
+  const moveX = (Math.random() - 0.5) * 100; // movimiento horizontal
+  const rotate = (Math.random() - 0.5) * 60; // rotación
+  const startY = window.innerHeight + Math.random() * 100;
+  const startX = parseFloat(heart.style.left);
 
-    document.body.appendChild(heart);
+  let startTime = null;
+
+  function animate(time) {
+    if(!startTime) startTime = time;
+    const t = (time - startTime)/1000;
+    const progress = t/duration;
+
+    if(progress < 1){
+      heart.style.top = `${startY - progress * (window.innerHeight + 100)}px`;
+      heart.style.left = `${startX + Math.sin(progress * Math.PI * 2) * moveX}px`;
+      heart.style.transform = `rotate(${progress*rotate}deg)`;
+      heart.style.opacity = 1 - progress;
+      requestAnimationFrame(animate);
+    } else {
+      // reiniciar animación
+      heart.style.top = `${window.innerHeight + Math.random() * 100}px`;
+      heart.style.left = `${Math.random() * window.innerWidth}px`;
+      startTime = null;
+      requestAnimationFrame(animate);
+    }
   }
+
+  requestAnimationFrame(animate);
+}
 </script>
 
 </body>
