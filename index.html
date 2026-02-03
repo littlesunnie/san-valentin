@@ -29,7 +29,7 @@
     width: 360px;
     height: 430px;
     text-align: center;
-    z-index: 10; /* encima de los corazones */
+    z-index: 10;
   }
 
   /* ===== SOBRE ===== */
@@ -148,12 +148,12 @@
     color: #444;
   }
 
-  /* ===== CORAZONES FLOTANTES ===== */
+  /* ===== CORAZONES SÓLIDOS ===== */
   .heart {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: rgba(255, 200, 220, 0.8);
+    background-color: #ff99bb; /* más sólido */
     transform: rotate(-45deg);
     border-radius: 0 50% 50% 50%;
     animation-name: floatHeart;
@@ -167,7 +167,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: rgba(255, 200, 220, 0.8);
+    background-color: #ff99bb; /* sólido */
     border-radius: 50%;
   }
   .heart::before { top: -10px; left: 0; }
@@ -178,14 +178,13 @@
       transform: translate(0px, 0px) rotate(-45deg);
       opacity: 0;
     }
-    10% { opacity: 0.6; }
-    50% { opacity: 0.8; }
+    10% { opacity: 1; }
+    50% { opacity: 1; }
     100% {
       transform: translate(var(--moveX), -700px) rotate(var(--rotateDeg));
       opacity: 0;
     }
   }
-
 </style>
 </head>
 
@@ -227,21 +226,24 @@
     const heart = document.createElement("div");
     heart.classList.add("heart");
 
-    const size = Math.random() * 20 + 10; // 10-30px
+    // tamaño mínimo 15px
+    const size = Math.random() * 15 + 15; // 15-30px
     heart.style.width = `${size}px`;
     heart.style.height = `${size}px`;
 
     heart.style.left = `${Math.random() * window.innerWidth}px`;
     heart.style.top = `${Math.random() * window.innerHeight}px`;
 
-    const moveX = (Math.random() - 0.5) * 100 + "px"; // movimiento horizontal
-    const rotateDeg = (Math.random() * 60 - 30) + "deg"; // rotación aleatoria
+    // movimiento horizontal aleatorio
+    const moveX = (Math.random() - 0.5) * 100 + "px";
+    const rotateDeg = (Math.random() * 60 - 30) + "deg";
 
     heart.style.setProperty('--moveX', moveX);
     heart.style.setProperty('--rotateDeg', rotateDeg);
 
-    heart.style.animationDuration = `${Math.random() * 8 + 5}s`; // 5-13s
-    heart.style.opacity = Math.random() * 0.7 + 0.3;
+    // duración y opacidad aleatorias, más sólidas
+    heart.style.animationDuration = `${Math.random() * 8 + 5}s`;
+    heart.style.opacity = 1;
 
     document.body.appendChild(heart);
   }
