@@ -13,28 +13,53 @@
     height: 100%;
     overflow: hidden;
     font-family: "Georgia", serif;
-    background-color: #ffe4ec; /* rosita pastel base */
+    background-color: #ffe4ec; /* rosita pastel */
+    position: relative;
   }
 
-  /* ===== CORAZONES FLOTANTES ===== */
-  body::before {
+  /* ===== CORAZONES ===== */
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 200, 220, 0.8);
+    transform: rotate(-45deg);
+    animation: float 8s linear infinite;
+    border-radius: 0 50% 50% 50%;
+  }
+
+  .heart::before,
+  .heart::after {
     content: "";
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(255, 200, 220, 0.6), transparent 60%),
-      radial-gradient(circle at 70% 25%, rgba(255, 220, 240, 0.5), transparent 60%),
-      radial-gradient(circle at 40% 80%, rgba(255, 180, 210, 0.5), transparent 60%),
-      radial-gradient(circle at 85% 75%, rgba(255, 200, 230, 0.4), transparent 60%),
-      linear-gradient(180deg, #ffe4ec, #ffd1e3);
-    z-index: -1;
-    animation: floatHearts 20s linear infinite;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 200, 220, 0.8);
+    border-radius: 50%;
   }
 
-  @keyframes floatHearts {
-    0%   { transform: translateY(0px); }
-    50%  { transform: translateY(-25px); }
-    100% { transform: translateY(0px); }
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+
+  .heart::after {
+    top: 0;
+    left: 10px;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(-45deg);
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-600px) rotate(-45deg);
+      opacity: 0;
+    }
   }
 
   /* ===== CENTRADOR ===== */
@@ -50,6 +75,7 @@
     width: 360px;
     height: 430px;
     text-align: center;
+    z-index: 10; /* encima de los corazones */
   }
 
   /* ===== SOBRE ===== */
@@ -201,6 +227,20 @@
   envelope.addEventListener("click", () => {
     envelope.classList.add("open");
   });
+
+  // ===== CREAR CORAZONES FLOTANTES =====
+  const numHearts = 25; // cantidad de corazones
+  for (let i = 0; i < numHearts; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    const size = Math.random() * 20 + 10; // tamaño entre 10 y 30px
+    heart.style.width = `${size}px`;
+    heart.style.height = `${size}px`;
+    heart.style.left = `${Math.random() * window.innerWidth}px`;
+    heart.style.animationDuration = `${Math.random() * 8 + 5}s`; // 5 a 13s
+    heart.style.opacity = Math.random() * 0.7 + 0.3;
+    document.body.appendChild(heart);
+  }
 </script>
 
 </body>
