@@ -153,7 +153,7 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    fill: #ff5c8d; /* color sólido */
+    fill: #ff5c8d; /* sólido y bonito */
     pointer-events: none;
     z-index: 1;
     opacity: 0;
@@ -194,16 +194,16 @@ envelope.addEventListener("click", () => {
   envelope.classList.add("open");
 });
 
-// ===== CREAR CORAZONES SVG ANIMADOS =====
-const numHearts = 40;
+// ===== CORAZONES SVG equilibrados =====
+const numHearts = 35;
 for (let i = 0; i < numHearts; i++) {
   const svgNS = "http://www.w3.org/2000/svg";
   const heart = document.createElementNS(svgNS, "svg");
   heart.setAttribute("viewBox","0 0 32 29.6");
   heart.classList.add("heart-svg");
 
-  // tamaño aleatorio
-  const size = Math.random() * 20 + 15; // 15-35px
+  // tamaño aleatorio entre 18-35px para que siempre se vea bien
+  const size = Math.random() * 17 + 18;
   heart.style.width = `${size}px`;
   heart.style.height = `${size}px`;
 
@@ -211,17 +211,17 @@ for (let i = 0; i < numHearts; i++) {
   heart.style.left = `${Math.random() * window.innerWidth}px`;
   heart.style.top = `${window.innerHeight + Math.random() * 100}px`;
 
-  // crear forma de corazón
+  // forma de corazón
   const path = document.createElementNS(svgNS, "path");
   path.setAttribute("d", "M23.6,0c-2.9,0-5.4,1.8-6.6,4.4C15.8,1.8,13.3,0,10.4,0C4.7,0,0,4.7,0,10.4c0,5.8,5.1,10.3,12.8,17.1l3.2,2.8l3.2-2.8 C26.9,20.7,32,16.2,32,10.4C32,4.7,27.3,0,23.6,0z");
   heart.appendChild(path);
 
   document.body.appendChild(heart);
 
-  // animación con JS
-  const duration = Math.random() * 8 + 5; // 5-13s
-  const moveX = (Math.random() - 0.5) * 100; // movimiento horizontal
-  const rotate = (Math.random() - 0.5) * 60; // rotación
+  // animación JS
+  const duration = Math.random() * 8 + 5;
+  const moveX = (Math.random() - 0.5) * 100; 
+  const rotate = (Math.random() - 0.5) * 60;
   const startY = window.innerHeight + Math.random() * 100;
   const startX = parseFloat(heart.style.left);
 
@@ -239,7 +239,7 @@ for (let i = 0; i < numHearts; i++) {
       heart.style.opacity = 1 - progress;
       requestAnimationFrame(animate);
     } else {
-      // reiniciar animación
+      // reiniciar animación desde abajo
       heart.style.top = `${window.innerHeight + Math.random() * 100}px`;
       heart.style.left = `${Math.random() * window.innerWidth}px`;
       startTime = null;
