@@ -85,18 +85,20 @@
     /* CARTA */
     .letter {
       position: absolute;
-      bottom: 0;
       left: 50%;
-      transform: translateX(-50%) translateY(120%);
-      width: 92%;
+      bottom: calc(50% - 110px);
+      transform: translateX(-50%) translateY(160px);
+      opacity: 0;
+      pointer-events: none;
+      width: 320px;
       min-height: 260px;
       background: rgba(255,255,255,0.97);
       color: #333;
       padding: 30px 28px;
       border-radius: 18px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-      transition: transform 1.1s ease;
-      z-index: 10; /* 👈 MÁS ALTO QUE EL SOBRE */
+      transition: transform 1.1s ease, opacity 0.8s ease;
+      z-index: 20;
     }
 
     /* ESTADO ABIERTO */
@@ -110,9 +112,12 @@
       transform: translateX(-50%) scale(0.6);
     }
 
-    .open .letter {
-      transform: translateX(-50%) translateY(-60px);
+   .open + .letter {
+      transform: translateX(-50%) translateY(-40px);
+      opacity: 1;
+      pointer-events: auto;
     }
+
 
     h1 {
       font-size: 24px;
