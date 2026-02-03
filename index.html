@@ -41,15 +41,8 @@
     z-index: 10;
     margin: 0 auto;
     overflow: hidden;
-  }
 
-  /* cuerpo del sobre con textura */
-  .body {
-    position: absolute;
-    inset: 0;
     background: linear-gradient(145deg, #f2e6d8, #e6d3bd);
-    border-radius: 6px;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.25), inset 0 0 10px rgba(0,0,0,0.1);
 
     /* textura ligera */
     background-image:
@@ -59,6 +52,8 @@
       linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.05) 75%);
     background-size: 20px 20px;
     background-blend-mode: overlay;
+
+    box-shadow: 0 15px 25px rgba(0,0,0,0.25), inset 0 0 10px rgba(0,0,0,0.1);
   }
 
   .to-name {
@@ -72,7 +67,6 @@
     pointer-events: none;
   }
 
-  /* flap separado sin textura para que el cierre se vea */
   .flap {
     position: absolute;
     width: 100%;
@@ -178,10 +172,9 @@
   <div class="container">
 
     <div class="envelope" id="envelope">
-      <div class="body"></div> <!-- textura aplicada solo al cuerpo -->
-      <div class="seal"></div>
       <div class="to-name">Para Isi 💌</div>
-      <div class="flap"></div> <!-- flap separado para que se vea -->
+      <div class="flap"></div>
+      <div class="seal"></div>
     </div>
 
     <div class="letter">
