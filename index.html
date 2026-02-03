@@ -30,8 +30,7 @@
       position: relative;
       cursor: pointer;
       box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-      overflow: visible;
-      z-index: 1; /* 👈 CLAVE */
+      z-index: 2;
     }
 
     /* TAPA */
@@ -86,8 +85,8 @@
     .letter {
       position: absolute;
       left: 50%;
-      bottom: calc(50% - 110px);
-      transform: translateX(-50%) translateY(160px);
+      bottom: 120px;
+      transform: translateX(-50%) translateY(140px);
       opacity: 0;
       pointer-events: none;
       width: 320px;
@@ -98,26 +97,25 @@
       border-radius: 18px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.25);
       transition: transform 1.1s ease, opacity 0.8s ease;
-      z-index: 20;
+      z-index: 5;
     }
 
     /* ESTADO ABIERTO */
-    .open .flap {
+    .container.open .flap {
       transform: rotateX(180deg);
-      z-index: 0;
+      z-index: 1;
     }
 
-    .open .seal {
+    .container.open .seal {
       opacity: 0;
       transform: translateX(-50%) scale(0.6);
     }
 
-   .open + .letter {
+    .container.open .letter {
       transform: translateX(-50%) translateY(-40px);
       opacity: 1;
       pointer-events: auto;
     }
-
 
     h1 {
       font-size: 24px;
@@ -147,23 +145,22 @@
 <body>
 
   <div class="container">
-    <div class="envelope" onclick="abrir()">
 
+    <div class="envelope" onclick="abrir()">
       <div class="flap">
         <div class="seal">💖</div>
       </div>
-
       <div class="to" id="para"></div>
+    </div>
 
-      <div class="letter">
-        <h1 id="titulo"></h1>
-        <p id="mensaje"></p>
-        <footer>Hecho con amor 💌</footer>
-      </div>
-
+    <div class="letter">
+      <h1 id="titulo"></h1>
+      <p id="mensaje"></p>
+      <footer>Hecho con amor 💌</footer>
     </div>
 
     <div class="hint">Toca el sobre 💌</div>
+
   </div>
 
   <script>
@@ -177,7 +174,7 @@
     document.getElementById("mensaje").innerText = texto;
 
     function abrir() {
-      document.querySelector(".envelope").classList.add("open");
+      document.querySelector(".container").classList.add("open");
       document.querySelector(".hint").style.display = "none";
     }
   </script>
