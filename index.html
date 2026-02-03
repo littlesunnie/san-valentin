@@ -1,186 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre Interactivo 💌</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Para ti 💌</title>
+
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: #fff; /* fondo blanco */
-  font-family: Georgia, serif;
-  overflow: hidden;
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Georgia", serif;
+    background-color: #ffe4ec; /* rosita pastel */
+    position: relative;
+  }
 
-.page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
+  /* ===== CENTRADOR ===== */
+  .page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.container {
-  position: relative;
-  width: 360px;
-  height: 430px;
-}
+  .container {
+    position: relative;
+    width: 360px;
+    height: 430px;
+    text-align: center;
+    z-index: 10; /* encima de los corazones */
+  }
 
-/* ===== SOBRE ===== */
-.envelope {
-  position: relative;
-  width: 100%;
-  height: 240px;
-  perspective: 1000px;
-  cursor: pointer;
-}
+  /* ===== SOBRE REALISTA ===== */
+  .envelope {
+    position: relative;
+    width: 360px;
+    height: 240px;
+    background: linear-gradient(145deg, #f2e6d8, #e6d3bd);
+    border-radius: 6px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.25), inset 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    z-index: 10;
+    margin: 0 auto;
+    overflow: hidden;
+  }
 
-/* cuerpo del sobre */
-.body {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 180px;
-  border-radius: 6px;
-  background: #f5d6c6;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.35), inset 0 0 12px rgba(0,0,0,0.1);
-  border: 1px solid rgba(0,0,0,0.12);
-  z-index: 1;
-}
+  .back {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #f2e6d8, #e6d3bd);
+    border-radius: 6px;
+    z-index: 1;
+  }
 
-/* flap del sobre */
-.flap {
-  position: absolute;
-  bottom: 180px; /* justo encima del cuerpo */
-  width: 100%;
-  height: 120px;
-  background: #f5d6c6;
-  clip-path: polygon(0 100%, 50% 0, 100% 100%);
-  transform-origin: bottom center;
-  transform: rotateX(0deg); /* cerrado al inicio */
-  transition: transform 1s ease;
-  z-index: 3;
-  box-shadow: inset 0 6px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
-}
+  .to-name {
+    position: absolute;
+    bottom: 22px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: #7a3a4a;
+    z-index: 4;
+    pointer-events: none;
+  }
 
-/* flap abierto */
-.envelope.open .flap {
-  transform: rotateX(-180deg);
-}
+  .flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #e6d3bd, #d7c2a6);
+    clip-path: polygon(0 0, 100% 0, 50% 55%);
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 5;
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
+  }
 
-/* sello */
-.seal {
-  position: absolute;
-  width: 52px;
-  height: 52px;
-  background: radial-gradient(circle at 30% 30%, #ffb3c7, #c2185b);
-  border-radius: 50%;
-  left: 50%;
-  bottom: 150px; /* dentro del flap */
-  transform: translateX(-50%);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 4;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
+  .open .flap {
+    transform: rotateX(180deg);
+  }
 
-.envelope.open .seal {
-  opacity: 0;
-  transform: translateX(-50%) scale(0.6);
-  pointer-events: none;
-}
+  .seal {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    background: radial-gradient(circle at 30% 30%, #ffb3c7, #c2185b);
+    border-radius: 50%;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 6;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
 
-/* nombre */
-.to-name {
-  position: absolute;
-  bottom: 18px;
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-  color: #7a3a4a;
-  pointer-events: none;
-  z-index: 2;
-}
+  .open .seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+    pointer-events: none;
+  }
 
-/* hint */
-.hint {
-  margin-top: 16px;
-  font-size: 14px;
-  color: #9c5a6a;
-  opacity: 0.85;
-  transition: opacity 0.4s ease;
-}
+  .hint {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #9c5a6a;
+    opacity: 0.85;
+    transition: opacity 0.4s ease;
+  }
 
-.envelope.open ~ .hint {
-  opacity: 0;
-}
+  .open ~ .hint {
+    opacity: 0;
+  }
 
-/* carta */
-.letter {
-  position: absolute;
-  left: 50%;
-  bottom: 140px;
-  transform: translateX(-50%) translateY(160px);
-  opacity: 0;
-  pointer-events: none;
-  width: 320px;
-  min-height: 260px;
-  background: rgba(255,255,255,0.97);
-  padding: 30px 26px;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-  transition: transform 1.1s ease, opacity 0.8s ease;
-  z-index: 5;
-}
+  /* ===== CARTA ===== */
+  .letter {
+    position: absolute;
+    left: 50%;
+    bottom: 140px;
+    transform: translateX(-50%) translateY(160px);
+    opacity: 0;
+    pointer-events: none;
+    width: 320px;
+    min-height: 260px;
+    background: rgba(255,255,255,0.97);
+    padding: 30px 26px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    transition: transform 1.1s ease, opacity 0.8s ease;
+    z-index: 20;
+  }
 
-.envelope.open + .letter {
-  transform: translateX(-50%) translateY(-40px);
-  opacity: 1;
-  pointer-events: auto;
-}
+  .open + .letter {
+    transform: translateX(-50%) translateY(-40px);
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-.letter h1 {
-  margin-top: 0;
-  text-align: center;
-  color: #7a3a4a;
-}
+  .letter h1 {
+    margin-top: 0;
+    text-align: center;
+    color: #7a3a4a;
+  }
 
-.letter p {
-  line-height: 1.5;
-  font-size: 16px;
-  text-align: center;
-  color: #444;
-}
+  .letter p {
+    line-height: 1.5;
+    font-size: 16px;
+    text-align: center;
+    color: #444;
+  }
 
-/* corazones suaves */
-.heart-svg {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  fill: #ffaacd;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.7;
-  transform-origin: center;
-}
+  /* ===== CORAZONES SUAVES ===== */
+  .heart-svg {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    fill: #ffaacd; /* rosa pastel suave */
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7; /* suave y no distractor */
+    transform-origin: center;
+  }
 </style>
 </head>
+
 <body>
 
 <div class="page">
   <div class="container">
 
     <div class="envelope" id="envelope">
-      <div class="body"></div>
-      <div class="flap"></div>
+      <div class="back"></div>
       <div class="seal"></div>
       <div class="to-name">Para Isi 💌</div>
+      <div class="flap"></div>
     </div>
 
     <div class="letter">
       <h1>Para ti</h1>
       <p>
-        Esta carta es solo para ti.<br>
+        Esta carta es solo para ti.  
         Gracias por existir y hacer el mundo un poquito más lindo.
       </p>
     </div>
@@ -197,7 +196,7 @@ envelope.addEventListener("click", () => {
   envelope.classList.add("open");
 });
 
-// corazones animados
+// ===== CORAZONES SUAVES =====
 const numHearts = 35;
 for (let i = 0; i < numHearts; i++) {
   const svgNS = "http://www.w3.org/2000/svg";
@@ -205,17 +204,23 @@ for (let i = 0; i < numHearts; i++) {
   heart.setAttribute("viewBox","0 0 32 29.6");
   heart.classList.add("heart-svg");
 
+  // tamaño aleatorio 18-35px
   const size = Math.random() * 17 + 18;
   heart.style.width = `${size}px`;
   heart.style.height = `${size}px`;
+
+  // posición inicial
   heart.style.left = `${Math.random() * window.innerWidth}px`;
   heart.style.top = `${window.innerHeight + Math.random() * 100}px`;
 
+  // forma de corazón
   const path = document.createElementNS(svgNS, "path");
   path.setAttribute("d", "M23.6,0c-2.9,0-5.4,1.8-6.6,4.4C15.8,1.8,13.3,0,10.4,0C4.7,0,0,4.7,0,10.4c0,5.8,5.1,10.3,12.8,17.1l3.2,2.8l3.2-2.8 C26.9,20.7,32,16.2,32,10.4C32,4.7,27.3,0,23.6,0z");
   heart.appendChild(path);
+
   document.body.appendChild(heart);
 
+  // animación JS
   const duration = Math.random() * 8 + 5;
   const moveX = (Math.random() - 0.5) * 100; 
   const rotate = (Math.random() - 0.5) * 60;
@@ -223,6 +228,7 @@ for (let i = 0; i < numHearts; i++) {
   const startX = parseFloat(heart.style.left);
 
   let startTime = null;
+
   function animate(time) {
     if(!startTime) startTime = time;
     const t = (time - startTime)/1000;
@@ -235,6 +241,7 @@ for (let i = 0; i < numHearts; i++) {
       heart.style.opacity = 0.7 * (1 - progress);
       requestAnimationFrame(animate);
     } else {
+      // reiniciar animación
       heart.style.top = `${window.innerHeight + Math.random() * 100}px`;
       heart.style.left = `${Math.random() * window.innerWidth}px`;
       startTime = null;
