@@ -9,7 +9,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #ffe4ec; /* fondo rosita */
+  background-color: #ffe4ec; /* fondo rosita pastel */
   font-family: Georgia, serif;
   overflow: hidden;
 }
@@ -27,7 +27,7 @@ html, body {
   height: 430px;
 }
 
-/* ===== CONTENEDOR DEL SOBRE ===== */
+/* ===== SOBRE ===== */
 .envelope {
   position: relative;
   width: 100%;
@@ -36,7 +36,7 @@ html, body {
   cursor: pointer;
 }
 
-/* ===== CUERPO DEL SOBRE ===== */
+/* cuerpo fijo del sobre */
 .body {
   position: absolute;
   bottom: 0;
@@ -53,10 +53,10 @@ html, body {
   z-index: 1;
 }
 
-/* ===== FLAP (Doble superior) ===== */
+/* flap cerrado */
 .flap {
   position: absolute;
-  bottom: 180px; /* justo arriba del cuerpo */
+  bottom: 180px; /* justo encima del cuerpo */
   width: 100%;
   height: 120px;
   background: #f5d6c6;
@@ -65,18 +65,19 @@ html, body {
     repeating-linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px);
   background-blend-mode: overlay;
   clip-path: polygon(0 100%, 50% 0, 100% 100%);
-  transform-origin: bottom center; /* pivote para abrir */
+  transform-origin: bottom center; /* pivote en la base */
+  transform: rotateX(0deg); /* cerrado al inicio */
   transition: transform 1s ease;
   z-index: 3;
   box-shadow: inset 0 6px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.15);
 }
 
-/* FLAP ABIERTO */
+/* flap abierto */
 .envelope.open .flap {
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg); /* rota hacia atrás */
 }
 
-/* SELLO */
+/* sello */
 .seal {
   position: absolute;
   width: 52px;
@@ -97,7 +98,7 @@ html, body {
   pointer-events: none;
 }
 
-/* NOMBRE */
+/* nombre */
 .to-name {
   position: absolute;
   bottom: 18px;
@@ -109,7 +110,7 @@ html, body {
   z-index: 2;
 }
 
-/* HINT */
+/* hint */
 .hint {
   margin-top: 16px;
   font-size: 14px;
